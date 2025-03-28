@@ -1,5 +1,6 @@
 package com.example.marveleffectiveapp.ui.screens.home.views
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.offset
@@ -15,14 +16,16 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
 import coil.compose.rememberAsyncImagePainter
 
 @Composable
-fun ImageItem(name: String, imageUrl: String) {
+fun ImageItem(name: String, imageUrl: String, navController: NavHostController) {
     Box(
         modifier = Modifier
             .width(420.dp)
             .height(800.dp)
+            .clickable {navController.navigate("second_screen")}
     ) {
         Image(
             painter = rememberAsyncImagePainter(imageUrl),

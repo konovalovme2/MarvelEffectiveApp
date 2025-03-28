@@ -3,12 +3,12 @@ package com.example.marveleffectiveapp
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.tooling.preview.Preview
-import androidx.navigation.NavHostController
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.marveleffectiveapp.ui.screens.home.HomeScreen
+import com.example.marveleffectiveapp.ui.screens.superhero.SuperheroScreen
 
 
 class MainActivity : ComponentActivity() {
@@ -23,18 +23,12 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun App() {
     val navController = rememberNavController()
-    MaterialTheme {
-        AppNavigation(navController)
+    NavHost(navController = navController, startDestination = "Home") {
+        composable("Home") {
+            HomeScreen(navController)
+        }
+        composable("Superhero") {
+            SuperheroScreen()
+        }
     }
-}
-
-@Composable
-fun AppNavigation(navController: NavHostController) {
-    HomeScreen()
-}
-
-@Preview()
-@Composable
-fun SimpleComposablePreview() {
-    App()
 }

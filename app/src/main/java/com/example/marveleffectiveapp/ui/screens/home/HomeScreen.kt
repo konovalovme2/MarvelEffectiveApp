@@ -23,6 +23,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
 import com.example.marveleffectiveapp.R
 import com.example.marveleffectiveapp.ui.screens.home.models.HomeViewState
 import com.example.marveleffectiveapp.ui.screens.home.views.ImageItem
@@ -30,7 +31,7 @@ import com.example.marveleffectiveapp.ui.theme.DarkRed
 
 
 @Composable
-fun HomeScreen() {
+fun HomeScreen(navController: NavHostController) {
     val viewState = HomeViewState()
     val lazyListState = rememberLazyListState()
     val snapBehavior = rememberSnapFlingBehavior(lazyListState = lazyListState)
@@ -78,7 +79,7 @@ fun HomeScreen() {
                 flingBehavior = snapBehavior
             ) {
                 items(viewState.images) {
-                    image -> ImageItem(image.name, image.imageUrl)
+                    image -> ImageItem(image.name, image.imageUrl, navController)
                 }
             }
         }
