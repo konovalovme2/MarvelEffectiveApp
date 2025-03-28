@@ -3,16 +3,16 @@ package com.example.marveleffectiveapp.ui.screens.home
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.gestures.snapping.rememberSnapFlingBehavior
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -32,11 +32,13 @@ import com.example.marveleffectiveapp.ui.theme.DarkRed
 @Composable
 fun HomeScreen() {
     val viewState = HomeViewState()
+    val lazyListState = rememberLazyListState()
+    val snapBehavior = rememberSnapFlingBehavior(lazyListState = lazyListState)
 
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color.DarkGray) // Серый фон
+            .background(Color.DarkGray)
     ) {
         Canvas(
             modifier = Modifier.fillMaxSize()
@@ -67,13 +69,13 @@ fun HomeScreen() {
             Text(
                 text = "Choose your hero",
                 color = Color.White,
-                fontSize = 32.sp,
+                fontSize = 36.sp,
                 fontWeight= FontWeight.ExtraBold,
-                modifier = Modifier.offset(y = -40.dp)
             )
-            LazyRow (modifier = Modifier.fillMaxWidth(),
-            contentPadding = PaddingValues(horizontal = 8.dp),
-            horizontalArrangement = Arrangement.spacedBy(8.dp)
+            LazyRow (
+                modifier = Modifier.fillMaxWidth(),
+                state = lazyListState,
+                flingBehavior = snapBehavior
             ) {
                 items(viewState.images) {
                     image -> ImageItem(image.name, image.imageUrl)

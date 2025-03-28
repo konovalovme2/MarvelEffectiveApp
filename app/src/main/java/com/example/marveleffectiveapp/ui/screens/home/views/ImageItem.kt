@@ -1,7 +1,6 @@
 package com.example.marveleffectiveapp.ui.screens.home.views
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.width
@@ -24,23 +23,27 @@ fun ImageItem(name: String, imageUrl: String) {
         modifier = Modifier
             .width(420.dp)
             .height(800.dp)
-            .clip(RoundedCornerShape(8.dp))
     ) {
         Image(
             painter = rememberAsyncImagePainter(imageUrl),
             contentDescription = "Superhero",
             modifier = Modifier
-                .fillMaxSize(),
+                .width(350.dp)
+                .height(667.dp)
+                .align(alignment = Alignment.Center)
+                .clip(RoundedCornerShape(10.dp)),
             contentScale = ContentScale.Crop
         )
         Text(
             text = name,
             modifier = Modifier
                 .align(alignment = Alignment.BottomStart)
-                .offset(x = 10.dp,
-                    y = -32.dp),
+                .offset(
+                    x = 60.dp,
+                    y = -100.dp
+                ),
             color = Color.White,
-            fontSize = 64.sp,
+            fontSize = 40.sp,
             fontWeight= FontWeight.ExtraBold
         )
     }
