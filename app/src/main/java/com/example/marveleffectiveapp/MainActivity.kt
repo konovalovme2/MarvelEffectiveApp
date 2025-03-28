@@ -27,8 +27,12 @@ fun App() {
         composable("Home") {
             HomeScreen(navController)
         }
-        composable("Superhero") {
-            SuperheroScreen()
+        composable("Superhero/{name}/{imageUrl}/{slogan}") { backStackEntry ->
+            val name = backStackEntry.arguments?.getString("name")
+            val imageUrl = backStackEntry.arguments?.getString("imageUrl")
+            val slogan = backStackEntry.arguments?.getString("slogan")
+            SuperheroScreen(name.toString(), imageUrl.toString(), slogan.toString(), navController)
         }
+
     }
 }

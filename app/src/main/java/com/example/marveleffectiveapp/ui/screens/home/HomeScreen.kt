@@ -71,7 +71,7 @@ fun HomeScreen(navController: NavHostController) {
                 text = "Choose your hero",
                 color = Color.White,
                 fontSize = 36.sp,
-                fontWeight= FontWeight.ExtraBold,
+                fontWeight= FontWeight.ExtraBold
             )
             LazyRow (
                 modifier = Modifier.fillMaxWidth(),
@@ -79,7 +79,7 @@ fun HomeScreen(navController: NavHostController) {
                 flingBehavior = snapBehavior
             ) {
                 items(viewState.images) {
-                    image -> ImageItem(image.name, image.imageUrl, navController)
+                    image -> ImageItem(image, navController)
                 }
             }
         }
